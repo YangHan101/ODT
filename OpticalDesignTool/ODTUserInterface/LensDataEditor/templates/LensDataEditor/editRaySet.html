@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Ray Parameters</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <form action="." method="post">
+        {% csrf_token %}
+        {{formSet.management_form}}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Grid Type</th>
+                    <th>Density</th>
+                    <th>Tilt X (deg)</th>
+                    <th>Tilt Y (deg)</th>
+                    <th>&lambda; (um)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for form in formSet %}
+                    <tr>
+                        <td>{{form.raySetIndex}}</td>
+                        <td>{{form.raySetGridType}}</td>
+                        <td>{{form.raySetGridDensity}}</td>
+                        <td>{{form.raySetAngleX}}</td>
+                        <td>{{form.raySetAngleY}}</td>
+                        <td>{{form.raySetWavelength}}</td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+        <input type="submit" value="Update" name="Update" />
+        <input type="submit" value="Add" name="Add"/>
+        <input type="submit" value="Delete" name="Delete"/>
+        {{form2}}
+    </form>
+
+</body>
+</html>
